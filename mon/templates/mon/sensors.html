@@ -1,0 +1,64 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Home{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            {% comment %} <h5 class="card-title"></h5> {% endcomment %}
+              <!---->
+                {% if ac %}
+                <style>
+                  table{
+                    width: 100%;
+                  }
+                </style>
+                <table class="table mt-4 table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sensor ID</th>
+                        <th scope="col">Sensor Name/Description</th>
+                        <th scope="col">Created by</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for a in ac %}
+                      <tr>
+                          <th scope="row">{{ a.sensor_id }}</th>
+                          <td>
+                              <p>{{ a.sensor_description }}</p>
+                          </td>
+                          <td>
+                              <p>{{ a.created_by }}</p>
+                          </td>
+                          <td>
+                            <p>{{ a.created_at }}</p>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>  
+                {% else %}
+                {% endif %}
+              <!---->
+              <a href="/add" class="card-link">Add New Sensor</a> 
+              <a href="/threshold_view" class="card-link">Temperature Threshold</a>
+              </div>
+              <a href="/home" class="btn btn-danger">Back</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

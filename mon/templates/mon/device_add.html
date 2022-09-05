@@ -1,0 +1,40 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Add Device{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="display-4 mb-3">
+        Add New Device
+    </h3>
+    <form method="POST" action="{% url 'device_add' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="sensor_id">Sensor Name/Description</label>
+            <select class="form-control" id="sensor_id" name="sensor_id">
+                {% for item in qsi %}
+                <option value={{item.sensor_id}}>{{item.sensor_description}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="threshold_id">Threshold Description</label>
+            <select class="form-control" id="threshold_id" name="threshold_id">
+                {% for item in qsii %}
+                <option value={{item.threshold_id}}>{{item.threshold_description}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="device_name">Device Name/Number</label>
+            <input type="text" name="device_name" class="form-control" id="MasterThreshold" placeholder="Example: 1">
+        </div>        
+        <div class="form-group">
+            <label for="created_by">Created by</label>
+            <input type="text" name="created_by" class="form-control" id="MasterThreshold" placeholder="Example: 1">
+        </div>        
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/threshold_view" class="btn btn-danger">Back</a>
+    </form>
+</div>
+{% endblock %}

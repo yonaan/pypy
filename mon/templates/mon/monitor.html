@@ -1,0 +1,77 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Home{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card card-primary card-outline">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+              <br>
+              
+                {% if ac %}
+                <table class="table mt-4 table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sensor ID</th>
+                        <th scope="col">Warning</th>
+                        <th scope="col">Danger</th>
+                        <th scope="col">Temperature</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for a in ac %}
+                      <tr>
+                          <th scope="row">{{ a.sensor_id }}</th>
+                          <td>
+                              <p>{{ a.sensor_warning }}</p>
+                          </td>
+                          <td>
+                              <p>{{ a.sensor_danger }}</p>
+                          </td>
+                          <td>
+                            <p>{{ a.temperature }}</p>
+                          </td>
+                          {% if a.temperature < a.sensor_warning %}
+                          <td>
+                            <p>Good</p>
+                          </td>
+                          {% elif a.temperature >= a.sensor_warning and a.temperature < a.sensor_danger%}
+                          <td>
+                            <p>Warning</p>
+                          </td>
+                          {%else%}
+                          <td>
+                            <p>Danger</p>
+                          </td>
+                          {%endif%}
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>   
+                {% else %}
+                {% endif %}
+              <!---->
+
+                <a href="/monitor_graph" class="card-link">Graph</a>
+                <!--a href="#" class="card-link">Another link</a-->
+              </div>
+              <a href="/home" class="btn btn-danger">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

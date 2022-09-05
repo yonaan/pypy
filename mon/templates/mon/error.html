@@ -1,0 +1,13 @@
+{% extends "mon/base.html" %}
+{% load static %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>
+        {{err}}
+    </h1>
+    <a href="{{ back }}" class="btn btn-info">Back</a>
+</div>
+{% endblock %}

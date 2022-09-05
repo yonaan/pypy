@@ -1,0 +1,43 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Home{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- /.col-md-6 -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="m-0">Temperature Monitor</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Monitor sensor's live temperature</h6>
+
+            <p class="card-text">Look at sensor's temperature in a table</p>
+            <a href="/monitor" class="btn btn-primary">Go</a>
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="m-0">Sensors</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Sensor list</h6>
+
+            <p class="card-text"></p>
+            <a href="/sensors" class="btn btn-primary">Go</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-6 -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
+{% endblock %}
+

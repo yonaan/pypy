@@ -1,0 +1,36 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}CRUD Database{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="display-4 mb-3">
+        Input sensor's threshold
+    </h3>
+    <form method="POST" action="{% url 'threshold' %}">
+        {% csrf_token %}
+        <!--div class="form-group">
+            <label for="name">name</label>
+            <input type="text" name="name" class="form-control" id="event" placeholder="Example: Sensor1">
+        </div-->
+        <div class="form-group">
+            <label for="sensor_id">Sensor ID</label>
+            <input type="text" name="sensor_id" class="form-control" id="MasterThreshold" placeholder="Example: ruang a">
+        </div>
+        <div class="form-group">
+            <label for="sensor_warning">Warning Temperature</label>
+            <input type="text" name="sensor_warning" class="form-control" id="MasterThreshold" placeholder="Example: 30">
+        </div>
+        <div class="form-group">
+            <label for="sensor_danger">Danger Temperature</label>
+            <input type="text" name="sensor_danger" class="form-control" id="MasterThreshold" placeholder="Example: 50">
+        </div>
+        <!--div class="form-group">
+            <label for="achievement">Details</label>
+            <textarea name="detail" id="detail" cols="30" rows="5" class="form-control"></textarea>
+            <small id="emailHelp" class="form-text text-muted">Give some details</small>
+        </div-->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

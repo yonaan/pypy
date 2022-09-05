@@ -1,0 +1,46 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Add Threshold{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="display-4 mb-3">
+        Add New Threshold
+    </h3>
+    <form method="POST" action="{% url 'threshold_add' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="sensor_id">Sensor Name</label>
+            <select class="form-control" id="sensor_id" name="sensor_id">
+                {% for item in qs %}
+                <option value={{item.sensor_id}}>{{item.sensor_description}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="threshold_description">Description</label>
+            <input type="text" name="threshold_description" class="form-control" id="MasterThreshold" placeholder="Example: suhu x~x">
+        </div>
+        <div class="form-group">
+            <label for="sensor_warning">Warning Temperature</label>
+            <input type="text" name="sensor_warning" class="form-control" id="MasterThreshold" placeholder="Example: 30">
+        </div>
+        <div class="form-group">
+            <label for="sensor_danger">Danger Temperature</label>
+            <input type="text" name="sensor_danger" class="form-control" id="MasterThreshold" placeholder="Example: 50">
+        {% comment %} </div>
+        <div class="form-group">
+            <label for="created_by">Created by </label>
+            <input type="text" name="created_by" class="form-control" id="MasterThreshold" placeholder="Example: mochi">
+        </div>
+        <div class="form-group">
+            <label for="updated_by">Updated by</label>
+            <input type="text" name="updated_by" class="form-control" id="MasterThreshold" placeholder="Example: mochi">
+        </div>         {% endcomment %}
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/threshold_view" class="btn btn-danger">Back</a>
+
+    </form>
+</div>
+{% endblock %}

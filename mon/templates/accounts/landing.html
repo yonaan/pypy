@@ -1,0 +1,38 @@
+{% extends 'accounts/base acc.html' %}
+  
+{% block title %}Login{% endblock %}
+  
+{% block body %}
+<div class="container py-5 h-100">
+   <div class="jumbotron bg-primary">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="row">
+           <div class="col-lg-8">
+               <h1 class="display-4 text-light">Welcome </h1>
+                  {% if user.is_authenticated %}
+                  <p class="lead text-light">Hi {{ user.username}}</p>
+                  <a href="/home" class="btn btn-success">Home</a>
+                  <br>
+                  <br>
+                  <a href="/signout" class="btn btn-danger">Logout</a>
+                  {% else %}
+                  <a href="/signin" class="btn btn-success "><span class="glyphicon glyphicon-log-in"></span>Login</a> 
+                  {% endif %}         
+               <hr class="my-4">
+               <p class="lead">
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+   <!--h2>Welcome!</h2>
+   {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <a href="/home" class="btn btn-success">Home</a>
+      <a href="/signout" class="btn btn-danger">Logout</a>
+      {% else %}
+      <a href="/signin" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>Login</a> 
+
+    {% endif %}<-->
+{% endblock %}

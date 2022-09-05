@@ -1,0 +1,77 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Home{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <canvas id="myChart" width="280" height="280"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            {% comment %} <script src="{% static 'mon/main.js' %}"></script> {% endcomment %}
+            <script>
+              const labels = [{% for n in qs %} '{{n.created_at}}', {%endfor%}
+              ];
+
+              const data = {
+                labels: labels,
+                datasets: [{
+                  label: 'Graph',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: [{% for n in qs%}'{{n.temperature}}',{%endfor%}],
+                }]
+              };
+
+              const config = {
+                type: 'line',
+                data: data,
+                options: {
+                  scales: {
+                    y: {
+                      title: {
+                        display: true,
+                        text: 'Temperature in Celcius'
+                      }
+                    },
+                    x: {
+                      title: {
+                        display: true,
+                        text: 'Time Sampled'
+                      }
+                    }
+                  }   
+                }
+              };
+            </script>
+            <script>
+              const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+              );
+            </script>
+            
+          </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+              <br>
+                {% comment %} <a href="/trend" class="card-link">ini -> grafik</a> {% endcomment %}
+                <!--a href="#" class="card-link">Another link</a-->
+              </div>
+              <a href="/monitor" class="btn btn-danger">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

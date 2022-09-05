@@ -1,0 +1,33 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}New Sensor{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="display-4 mb-3">
+        Add new sensor
+    </h3>
+    <form method="POST" action="{% url 'add' %}">
+        {% csrf_token %}
+        {% comment %} <div class="form-group">
+            <label for="sensor_id">Sensor ID</label>
+            <input type="text" name="sensor_id" class="form-control" id="MasterSensor" placeholder="Example: Sensor1">
+        </div> {% endcomment %}
+        <div class="form-group">
+            <label for="sensor_description">Name/Description</label>
+            <input type="text" name="sensor_description" class="form-control" id="MasterSensor" placeholder="Example: Sensor1">
+        </div>
+        <div class="form-group">
+            <label for="created_by">Created_by</label>
+            <input type="text" name="created_by" class="form-control" id="MasterSensor" placeholder="Example: tutu">
+        </div>
+        <div class="form-group">
+            <label for="updated_by">Updated_by</label>
+            <input type="text" name="updated_by" class="form-control" id="MasterSensor" placeholder="Example: tutu">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <a href="/sensors" class="btn btn-danger">Back</a>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'mon/base.html' %}
+{% load static %}
+{% block t %}Home{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <!--canvas id="myChart" width="280" height="280"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.2/chart.min.js"></script>
+            <script src="{% static 'mon/main.js' %}"></script-->
+          </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+              <br>
+              <!---->
+                {% if ac %}
+                <table class="table mt-4 table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sensor ID</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Warning</th>
+                        <th scope="col">Danger</th>
+                        <th scope="col">Created at</th>
+                        {% comment %} <th scope="col">Updated by</th> {% endcomment %}
+                        <th scope="col">Updated at</th>
+                        <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for a in ac %}
+                      <tr>
+                          <th scope="row">{{ a.sensor_id }}</th>
+                          {% comment %} <td>
+                            <p>{{ a.threshold_id }}</p>
+                        </td> {% endcomment %}
+                        <td>
+                          <p>{{ a.sensor_id.sensor_description }}</p>
+                        </td>
+                        <td>
+                              <p>{{ a.sensor_warning }}</p>
+                          </td>
+                          <td>
+                              <p>{{ a.sensor_danger }}</p>
+                          </td>
+                          <td>
+                            <p>{{ a.created_at }}</p>
+                          </td>
+                          {% comment %} <td>
+                            <p>{{ a.updated_by }}</p>
+                          </td> {% endcomment %}
+                          <td>
+                            <p>{{ a.updated_at }}</p>
+                          </td>
+                          <td class="text-info">
+                            <a href="{% url 'tempedit' a.id %}">Edit</a>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>  
+                {% else %}
+                {% endif %}
+                <a href="/threshold_add" class="card-link">Set New Threshold</a> 
+                <a href="/device_add" class="card-link">Add New Device</a> 
+              </div>
+              <a href="/sensors" class="btn btn-danger">Back</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
